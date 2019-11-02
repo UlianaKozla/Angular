@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms'
 export class AppComponent {
   flat_id: number = Math.floor(Math.random()*10000, 0);
   randomUser: number = 0;
+
   visabilityLogin: boolean = false;
   visabilityRegister: boolean = false;
   visabilityCreateFlat: boolean = false;
@@ -70,7 +71,6 @@ export class AppComponent {
     roomcount: '',
     owner: {}
   }
-
 
   flats = [
     {
