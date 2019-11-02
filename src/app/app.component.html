@@ -149,7 +149,7 @@
 
 <form *ngIf="visabilitySearch">
   <input type="text"
-         (keyup)="search($event.target.value)"
+         (input)="search($event.target.value)"
          placeholder="Search">
 
   <div *ngIf="flatToShow" [ngClass]="['conteiners']">
