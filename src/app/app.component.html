@@ -2,6 +2,7 @@
 <button (click)="renderRegister()" [ngClass]="['btn_main']">Register</button>
 <button (click)="renderCreateFlat()" [ngClass]="['btn_main']">Create Flat</button>
 <button (click)="renderShowAll()" [ngClass]="['btn_main']">Show All</button>
+<button (click)="renderSearch()" [ngClass]="['btn_main']">Search</button>
 
 <br>
 
@@ -66,6 +67,20 @@
   </form>
 </ng-container>
 
+<form *ngIf="visabilitySearch">
+  <input type="text" (keyup)="search($event.target.value)" placeholder="Search">
+  <div *ngIf="flatToShow" [ngClass]="['conteiners']">
+    <p>City: {{flatToShow.city}}</p>
+    <p>Squere metres: {{flatToShow.sqM}}</p>
+    <p>Price: {{flatToShow.price}}</p>
+    <p>Room count: {{ flatToShow.roomcount}}</p>
+  </div>
+  <div *ngIf="userToShow" [ngClass]="['conteiners']">
+    <p>Name: {{userToShow.name}}</p>
+    <p>Surname: {{userToShow.surname}}</p>
+    <p>Email: {{userToShow.email}}</p>
+  </div>
+</form>
 
 
 

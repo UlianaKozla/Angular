@@ -13,10 +13,15 @@ export class AppComponent {
   visabilityRegister: boolean = false;
   visabilityCreateFlat: boolean = false;
   visabilityShowAll: boolean = false;
+  visabilitySearch: boolean = false;
 
   messageLogin:string = '';
   messageRegister:string = '';
   messageFlat: string = '';
+  searchedWord: string = '';
+  flatToShow: string = '';
+  userToShow: string =''
+
 
   user ={
     name: '',
@@ -94,7 +99,7 @@ export class AppComponent {
     },
     {
       id: this.flat_id,
-      city: "Ternopil",
+      city: "Odesa",
       sqM: 60,
       price: 40000,
       roomcount: 2,
@@ -107,6 +112,7 @@ export class AppComponent {
     this.visabilityRegister = false;
     this.visabilityCreateFlat = false;
     this.visabilityShowAll = false;
+    this.visabilitySearch = false;
   }
 
   renderRegister() {
@@ -114,6 +120,7 @@ export class AppComponent {
     this.visabilityLogin = false;
     this.visabilityCreateFlat = false;
     this.visabilityShowAll = false;
+    this.visabilitySearch = false;
   }
 
   renderCreateFlat() {
@@ -121,6 +128,7 @@ export class AppComponent {
     this.visabilityRegister = false;
     this.visabilityLogin = false;
     this.visabilityShowAll = false;
+    this.visabilitySearch = false;
   }
 
   renderShowAll() {
@@ -128,6 +136,15 @@ export class AppComponent {
     this.visabilityRegister = false;
     this.visabilityLogin = false;
     this.visabilityCreateFlat = false;
+    this.visabilitySearch = false;
+  }
+
+  renderSearch() {
+    this.visabilitySearch = !this.visabilityShowAll;
+    this.visabilityRegister = false;
+    this.visabilityLogin = false;
+    this.visabilityCreateFlat = false;
+    this.visabilityShowAll = false;
   }
 
   register() {
@@ -151,4 +168,18 @@ export class AppComponent {
     this.messageFlat = 'Flat was created';
   }
 
+  search(word: string) {
+    this.searchedWord = word;
+    this.flatToShow = this.flats.find( object => {
+      return object.roomcount == word
+        || object.price == +word
+        || object.city == word
+        || object.sqM == +word
+    });
+    this.userToShow = this.users.find( object => {
+      return object.name == word
+        || object.surname == word
+        || object.email == word
+    })
+  }
  }
