@@ -1,0 +1,72 @@
+<button (click)="renderLogin()" [ngClass]="['btn_main']"> Login </button>
+<button (click)="renderRegister()" [ngClass]="['btn_main']">Register</button>
+<button (click)="renderCreateFlat()" [ngClass]="['btn_main']">Create Flat</button>
+<button (click)="renderShowAll()" [ngClass]="['btn_main']">Show All</button>
+
+<br>
+
+<form (ngSubmit)="login()" #loginForm="ngForm" *ngIf="visabilityLogin">
+  <label [ngStyle]="{color: emailInput.invalid && emailInput.touched ? 'red' : 'black'}">Email:</label>
+  <input type="text" name="email" [(ngModel)]="user.email" #emailInput="ngModel" required email>
+  <br>
+  <label [ngStyle]="{color: passwordInput.invalid && passwordInput.touched ? 'red' : 'black'}"> Password: </label>
+  <input type="password" name="password" [(ngModel)]="user.password" #passwordInput="ngModel" required minlength="4">
+  <br>
+  <button [disabled]="loginForm.invalid">SUBMIT</button>
+  <p>{{messageLogin}}</p>
+</form>
+
+<form (ngSubmit)="register()" #registerForm="ngForm" *ngIf="visabilityRegister">
+  <label [ngStyle]="{color: nameInput.invalid && nameInput.touched ? 'red' : 'black'}"> Name:</label>
+  <input type="text" name="name" [(ngModel)]="user.name" #nameInput="ngModel" required minlength="2">
+  <br>
+  <label>Surname:</label>
+  <input type="text" name="surname" [(ngModel)]="user.surname">
+  <br>
+  <label [ngStyle]="{color: emailInput.invalid && emailInput.touched ? 'red' : 'black'}">Email:</label>
+  <input type="text" name="email" [(ngModel)]="user.email" #emailInput="ngModel" required email>
+  <br>
+  <label [ngStyle]="{color: passwordInput.invalid && passwordInput.touched ? 'red' : 'black'}">Password:</label>
+  <input type="password" name="password" [(ngModel)]="user.password" #passwordInput="ngModel" required minlength="4">
+  <br>
+  <button [disabled]="registerForm.invalid">CONFIRM</button>
+  <p>{{messageRegister}}</p>
+</form>
+
+<form (ngSubmit)="createFlat()" #createFlatForm="ngForm" *ngIf="visabilityCreateFlat">
+  <label [ngStyle]="{color: cityInput.invalid && cityInput.touched ? 'red' : 'black'}">City:</label>
+  <input type="text" name="city" [(ngModel)]="flat.city" #cityInput="ngModel" required>
+  <br>
+  <label [ngStyle]="{color: sqMetresInput.invalid && sqMetresInput.touched ? 'red' : 'black'}">Squere Metres:</label>
+  <input type="text" name="SQMetres" [(ngModel)]="flat.sqM" #sqMetresInput="ngModel" required>
+  <br>
+  <label [ngStyle]="{color: priceInput.invalid && priceInput.touched ? 'red' : 'black'}">Price:</label>
+  <input type="text" name="priceMetres" [(ngModel)]="flat.price" #priceInput="ngModel" required>
+  <br>
+  <label>Room count</label>
+  <input type="text" name="roomCount" [(ngModel)]="flat.roomcount">
+  <br>
+  <button [disabled]="createFlatForm.invalid">SUBMIT</button>
+  <p>{{messageFlat}}</p>
+</form>
+
+<ng-container *ngIf="visabilityShowAll">
+  <form *ngFor="let flat of flats; let i = index"
+        [ngClass]="['conteiners',flat.owner.is_blocked ? 'blocked' : 'unblocked']">
+    <p>City: {{flat.city}}</p>
+    <p>Squere metres: {{flat.sqM}}</p>
+    <p>Price: {{flat.price}}</p>
+    <button (click)="showOwnerInfo = i">Show more info</button>
+    <div *ngIf="showOwnerInfo === i">
+      <p>Room count: {{ flat.roomcount}}</p>
+      <p>Flat owner name:{{ flat.owner.name}}</p>
+      <p>Flat owner surname:{{ flat.owner.surname}}</p>
+      <p>Flat owner email:{{ flat.owner.email}}</p>
+    </div>
+  </form>
+</ng-container>
+
+
+
+
+

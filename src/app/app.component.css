@@ -1,0 +1,25 @@
+*{
+  font-family: Georgia;
+  font-size: 14x;
+}
+
+.btn_main{
+  padding: .5rem;
+  background-color: lightgoldenrodyellow;
+}
+
+.blocked{
+  color: red;
+}
+
+.unblocked{
+  color: #000;
+}
+
+.conteiners{
+  display: inline-block;
+  margin: 1rem;
+  padding: 2rem;
+  border: 2px solid midnightblue;
+  background-color: lightgoldenrodyellow;
+}
