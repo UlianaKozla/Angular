@@ -19,7 +19,6 @@ export class AppComponent {
   messageLogin:string = '';
   messageRegister:string = '';
   messageFlat: string = '';
-  searchedWord: string = '';
   flatToShow: string = '';
   userToShow: string =''
 
@@ -169,7 +168,6 @@ export class AppComponent {
   }
 
   search(word: string) {
-    this.searchedWord = word;
     this.flatToShow = this.flats.find( object => {
       return object.roomcount == word
         || object.price == +word
